@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+	<link rel="icon" href="icon.png">
+	<title>Sudoku Solver</title>
+</head>
+<body>
+	<div class="title">
+		<h1>Sudoku Solver</h1>
+	</div>
+	<div class="content">
+		<div class="left-side">
+			<div class="infos">
+				<p>The board maker creates a grid with unique solution, thus the Sudoku is always solvable. Its difficulty can be adjusted down below. Once a new board is initialized, you can start filling the cells. The program shows if your solution is correct(<span id="correct">⬤</span>) or not(<span id="incorrect">⬤</span>). You can also run the solving algorithm by clicking on the Solve button.</p>
+				<p>The solving algorithm uses backtracking and optimized heuristics. Each turn, it picks the cell with least candidate solutions, and check if a valid solution exists. If the board is filled entirely, the solution is found. If the currently filled cell makes the solution goes against the rules, it goes back.</p>
+			</div>
+			<div class="difficulty-settings">
+				<p>Difficulty level</p>
+				<div class="slider-container">
+					<input type="range" min="-72" max="-17" value="-42" step="5" class="slider">
+				</div>
+			</div>
+			<div class="main-buttons">
+				<a class="new-board-button" onclick="newBoard()">New Board</a>
+				<a class="solve-button" onclick="driver()">Solve</a>
+			</div>
+		</div>
+		<div class="container">
+			<div class="popup">
+				<a class="button-1" onclick="selectedNumber(1)">1</a>
+				<a class="button-2" onclick="selectedNumber(2)">2</a>
+				<a class="button-3" onclick="selectedNumber(3)">3</a>
+				<a class="button-4" onclick="selectedNumber(4)">4</a>
+				<a class="button-5" onclick="selectedNumber(5)">5</a>
+				<a class="button-6" onclick="selectedNumber(6)">6</a>
+				<a class="button-7" onclick="selectedNumber(7)">7</a>
+				<a class="button-8" onclick="selectedNumber(8)">8</a>
+				<a class="button-9" onclick="selectedNumber(9)">9</a>
+			</div>
+			<div class="board">
+				<div class="row">
+					<div class="block">
+						<div class="cell" id="r0c0"></div>
+						<div class="cell" id="r0c1"></div>
+						<div class="cell" id="r0c2"></div>
+						<div class="cell" id="r1c0"></div>
+						<div class="cell" id="r1c1"></div>
+						<div class="cell" id="r1c2"></div>
+						<div class="cell" id="r2c0"></div>
+						<div class="cell" id="r2c1"></div>
+						<div class="cell" id="r2c2"></div>
+					</div>
+					<div class="block">
+						<div class="cell" id="r0c3"></div>
+						<div class="cell" id="r0c4"></div>
+						<div class="cell" id="r0c5"></div>
+						<div class="cell" id="r1c3"></div>
+						<div class="cell" id="r1c4"></div>
+						<div class="cell" id="r1c5"></div>
+						<div class="cell" id="r2c3"></div>
+						<div class="cell" id="r2c4"></div>
+						<div class="cell" id="r2c5"></div>
+					</div>
+					<div class="block">
+						<div class="cell" id="r0c6"></div>
+						<div class="cell" id="r0c7"></div>
+						<div class="cell" id="r0c8"></div>
+						<div class="cell" id="r1c6"></div>
+						<div class="cell" id="r1c7"></div>
+						<div class="cell" id="r1c8"></div>
+						<div class="cell" id="r2c6"></div>
+						<div class="cell" id="r2c7"></div>
+						<div class="cell" id="r2c8"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="block">
+						<div class="cell" id="r3c0"></div>
+						<div class="cell" id="r3c1"></div>
+						<div class="cell" id="r3c2"></div>
+						<div class="cell" id="r4c0"></div>
+						<div class="cell" id="r4c1"></div>
+						<div class="cell" id="r4c2"></div>
+						<div class="cell" id="r5c0"></div>
+						<div class="cell" id="r5c1"></div>
+						<div class="cell" id="r5c2"></div>
+					</div>
+					<div class="block">
+						<div class="cell" id="r3c3"></div>
+						<div class="cell" id="r3c4"></div>
+						<div class="cell" id="r3c5"></div>
+						<div class="cell" id="r4c3"></div>
+						<div class="cell" id="r4c4"></div>
+						<div class="cell" id="r4c5"></div>
+						<div class="cell" id="r5c3"></div>
+						<div class="cell" id="r5c4"></div>
+						<div class="cell" id="r5c5"></div>
+					</div>
+					<div class="block">
+						<div class="cell" id="r3c6"></div>
+						<div class="cell" id="r3c7"></div>
+						<div class="cell" id="r3c8"></div>
+						<div class="cell" id="r4c6"></div>
+						<div class="cell" id="r4c7"></div>
+						<div class="cell" id="r4c8"></div>
+						<div class="cell" id="r5c6"></div>
+						<div class="cell" id="r5c7"></div>
+						<div class="cell" id="r5c8"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="block">
+						<div class="cell" id="r6c0"></div>
+						<div class="cell" id="r6c1"></div>
+						<div class="cell" id="r6c2"></div>
+						<div class="cell" id="r7c0"></div>
+						<div class="cell" id="r7c1"></div>
+						<div class="cell" id="r7c2"></div>
+						<div class="cell" id="r8c0"></div>
+						<div class="cell" id="r8c1"></div>
+						<div class="cell" id="r8c2"></div>
+					</div>
+					<div class="block">
+						<div class="cell" id="r6c3"></div>
+						<div class="cell" id="r6c4"></div>
+						<div class="cell" id="r6c5"></div>
+						<div class="cell" id="r7c3"></div>
+						<div class="cell" id="r7c4"></div>
+						<div class="cell" id="r7c5"></div>
+						<div class="cell" id="r8c3"></div>
+						<div class="cell" id="r8c4"></div>
+						<div class="cell" id="r8c5"></div>
+					</div>
+					<div class="block">
+						<div class="cell" id="r6c6"></div>
+						<div class="cell" id="r6c7"></div>
+						<div class="cell" id="r6c8"></div>
+						<div class="cell" id="r7c6"></div>
+						<div class="cell" id="r7c7"></div>
+						<div class="cell" id="r7c8"></div>
+						<div class="cell" id="r8c6"></div>
+						<div class="cell" id="r8c7"></div>
+						<div class="cell" id="r8c8"></div>
+					</div>
+				</div>
+			</div>
+			<div class="small-buttons">
+				<div class="button1" id="write" onclick="changeEdit('write')">Write</div>
+				<div class="button2" id="erase" onclick="changeEdit('erase')">Erase</div>
+				<div class="edit-type"></div>
+			</div>
+		</div>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>

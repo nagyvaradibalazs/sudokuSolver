@@ -1,0 +1,188 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	color: black;
+	background: white;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	font-weight: 500;
+	letter-spacing: 1px;
+}
+
+.title {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.content {
+	display: flex;
+	margin-top: 100px;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	width: 400px;
+	height: 400px;
+	margin-left: 50px;
+	background: black;
+	border-radius: 10px;
+	display: grid;
+}
+
+.left-side {
+	width: 400px;
+	height: 400px;
+	display: grid;
+}
+
+.infos {
+	font-size: 14px;
+}
+
+.infos p {
+	margin-bottom: 10px;
+}
+
+#correct {
+	color: green;
+}
+
+#incorrect {
+	color: tomato;
+}
+
+.difficulty-settings {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.slider {
+	-webkit-appearance: none;
+  	appearance: none;
+  	width: 250px;
+  	height: 10px;
+  	border-radius: 5px;
+  	background: darkgrey;
+  	outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+  	appearance: none;
+  	width: 25px;
+  	height: 25px;
+  	border-radius: 10px;
+  	background: tomato;
+  	cursor: pointer;
+}
+
+.main-buttons {
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.row {
+	display: flex;
+}
+
+.in-block-row {
+	justify-content: space-around;
+}
+
+.block {
+	width: 120px;
+	height: 120px;
+	margin-left: 10px;
+	margin-top: 10px;
+	background: black;
+	display: grid;
+	grid-gap: 5px;
+	grid-template-columns: repeat(3, 0fr);
+	grid-template-rows: repeat(3, 0fr);
+}
+
+.cell {
+	width: 36.7px;
+	height: 36.7px;
+	background: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	font-size: 30px;
+	font-weight: 1000;
+}
+
+.cell.protected {	
+	cursor: not-allowed;
+}
+
+.small-buttons {
+	margin: 20px auto;
+	display: flex;
+	cursor: pointer;
+}
+
+.new-board-button {
+	cursor: pointer;
+	margin-right: 50px;
+	background: tomato;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.solve-button {
+	cursor: pointer;
+	margin-left: 30px;
+	background: tomato;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.popup {
+	display: none;
+	padding: 0 5px;
+	position: absolute;
+	background: tomato;
+	color: white;
+	border-radius: 10px;
+	grid-gap: 5px;
+	grid-template-columns: repeat(3, 0fr);
+	grid-template-rows: repeat(3, 0fr);
+}
+
+.popup::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -10px;
+	border-width: 10px;
+	border-style: solid;
+	border-color: tomato transparent transparent transparent;
+}
+
+.popup a {
+	cursor: pointer;
+}
+
+.button1, .button2 {
+	margin: 10px 30px;
+}
+
+.edit-type {
+	position: absolute;
+	z-index: -1;
+	background: tomato;
+	transform: scale(1.2);
+	transition: all 0.5s ease;
+	border-radius: 10px;
+}
