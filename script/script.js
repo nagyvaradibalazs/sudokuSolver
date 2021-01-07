@@ -1,8 +1,9 @@
 //variables and consts
 const slider = document.getElementsByClassName("slider")[0];
-const cells = document.getElementsByClassName("cell");
 const popup = document.getElementsByClassName("popup")[0];
+const bd = document.getElementsByClassName("board")[0];
 const editSelector = document.getElementsByClassName("edit-type")[0];
+var cells = undefined;
 var difficultyLevel = 42;
 var board = [];
 var editType = "write";
@@ -15,16 +16,39 @@ let solution = [];
 
 //initialize
 window.onload = function() {
-	for(let i = 0; i < 81; i++) {
-		let name = cells[i].id;
-		cells[i].setAttribute("onclick", `changeCell(${name});`);
+	//generate popup html
+	for(let i = 1; i <= 9; i++) {
+		popup.innerHTML += `<a class="button-${i}" onclick="selectedNumber(${i})">${i}</a>`;
 	}
+
+	//generate cell html
+	for(let i = 0; i < 3; i++) {
+		let html = "<div class='row'>";
+		for(let j = 0; j < 3; j++) {
+			html += "<div class='block'>";
+
+			for(let k = 0; k < 3; k++) {
+				for(let l = 0; l < 3; l++) {
+					let id = `r${i * 3 + k}c${3 * j + l}`;
+					html += `<div class="cell" id="${id}" onclick="changeCell(${id})"></div>`;
+				}
+			}
+
+			html += "</div>";
+		}
+		html += "</div>";
+		bd.innerHTML += html;
+	}
+	cells = document.getElementsByClassName("cell");
+
 	//reset the board
 	newBoard();
+
 	//updating the difficulty
 	slider.oninput = function() {
 		difficultyLevel = -this.value;
 	}
+
 	//write by default
 	changeEdit("write");
 }
